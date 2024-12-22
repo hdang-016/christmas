@@ -86,13 +86,27 @@
     <h2 id="b"></h2>
   </div>
   <img src="stuff/padoru.gif" class="gif">
-  <audio src="stuff/fate.mp3" autoplay style="display: none"></audio>
+  <audio id="myAudio">
+  <audio src="img/fate.mp3" autoplay style="display: none"></audio>
+  </audio>
   <script>
-    n = new Date()
-    t = Math.ceil((new Date('Dec 25 ' + n.getFullYear() + ' 00:00') - n) / 864e5)
-    a.textContent = t ? ((t + 365) % 365) + ' day' + (t === 1 ? '' : 's') + ' until Christmas' : "IT'S CHRISTMAS!"
-    b.innerHTML = '<b>' + 'JANFEBMARAPRMAYJUNJULAUGSEPOCTNOVDEC'.substr(n.getMonth() * 3, 3) + '</b>\n' + n.getDate()
+    // Tính toán ngày đến Giáng Sinh
+    const n = new Date();
+    const t = Math.ceil((new Date('Dec 25 ' + n.getFullYear() + ' 00:00') - n) / 864e5);
+    const a = document.getElementById('a');
+    const b = document.getElementById('b');
+    a.textContent = t ? ((t + 365) % 365) + ' day' + (t === 1 ? '' : 's') + ' until Christmas' : "IT'S CHRISTMAS!";
+    b.innerHTML = '<b>' + 'JANFEBMARAPRMAYJUNJULAUGSEPOCTNOVDEC'.substr(n.getMonth() * 3, 3) + '</b>\n' + n.getDate();
+
+    // Phát âm thanh khi click
+    const audio = document.getElementById("myAudio");
+    document.addEventListener("click", function () {
+      if (audio.paused) {
+        audio.play();
+      }
+    });
   </script>
+  <script src="script.js"></script>
 </body>
 
 </html>
